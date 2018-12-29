@@ -1,0 +1,77 @@
+<div class="custom-table">
+		<div class="container-fluid">
+			<div class="criteria-attributes">
+			    <div class="table-title-top-action">
+                <h1 class="section-title services" id="services">
+					<span><?php echo __('Validate and extend access token ').__('<a target="_blank" href="https://developers.facebook.com/tools/debug/accesstoken/"> Here</a>'); ?>.</span>
+				</h1>
+			    </div>
+			</div>
+			<!-- Basic Bootstrap Table -->
+			<section class="row component-section">
+				<!-- Basic Bootstrap Table code and example -->
+				<div class="col-md-12">
+				<?php echo $this->Flash->render();?>
+					<div class="component-box">
+						<!-- Basic Bootstrap Table example -->
+						<div class="pmd-card pmd-z-depth pmd-card-custom-view">
+                        	<div class="table-responsive">
+                                <table cellspacing="0" cellpadding="0" class="table text-center" id="table-bootstrap">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th><?php echo __('S.No.');?></th>
+                                            <th><?php echo __('Access Token');?></th>	
+                                            <th><?php echo __('Action');?></th>		
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									<?php 
+									 if(!empty($AccessToken) && count($AccessToken)>0){
+									 $Index  =  serialNumber($this->request->params);
+									 foreach($AccessToken as $key => $value){
+								     ?>
+									
+                                        <tr class="criteria_attribute_<?php echo $value['id'];?>">
+                                            <td><?php echo $Index; ?></td>
+                                            <td><?php echo __($value['access_token']);?></td>
+											<td class="pmd-table-row-action">
+													<a href="<?php echo $this->request->webroot;?>admin/access-token/update/<?php echo encodeKey($value['id']);?>" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm">
+													 <i class="material-icons md-dark pmd-sm">edit</i>
+												</a>
+																				
+											</td>			
+											<?php $Index++; } }else{ ?>
+											    <tr> 
+													<td colspan=8><?php echo __('Sorry, No Access Token Found.');?></td>
+												</tr>
+											<?php } ?>
+                                        </tr>
+									 
+                                    </tbody>
+                                </table>
+                            </div>
+						</div>
+					</div> 
+					<!-- Basic Bootstrap Table example end-->
+					<div class="nextPrevmain">
+					<div class="nextPrev">
+						<ul>
+							<?php
+								if($this->Paginator->hasPrev()) {
+									echo $this->Paginator->prev(__("Previous"),array( "tag" => "li", "disabledTag" => "a"));
+								}
+									echo $this->Paginator->numbers( array( "tag" => "li", "currentClass" => "paginatorActiveLink", "currentTag" => "a", "separator" => ""));
+								if($this->Paginator->hasNext()) {
+									echo $this->Paginator->next(__("Next"),array( "tag" => "li", "disabledTag" => "a"));
+								}
+							?>
+						</ul>
+					</div>
+				</div>
+
+		</div>
+				</div>
+			</section> <!-- Basic Bootstrap Table end-->
+	</div>
+</div>
+<?php echo $this->element('adminElements/footer');?>
