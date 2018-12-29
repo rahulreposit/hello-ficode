@@ -1,3 +1,5 @@
 <div class="criteria-attributes">
 	
 <?php echo $this->element('adminElements/footer');?>
+
+hi hows u are
